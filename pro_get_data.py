@@ -9,7 +9,7 @@ pro = ts.pro_api()
 
 
 ###########获取交易日历及所有股票
-calendar = pro.trade_cal(exchange_id='',start_date='20180810',end_date='20180820',field='pretrade_date',is_open='1')
+calendar = pro.trade_cal(exchange_id='',start_date='20180110',end_date='20180820',field='pretrade_date',is_open='1')
 stock_pool = pro.stock_basic(exchange_id='',fields='symbol,name,list_date,list_status')
 
 
@@ -34,7 +34,7 @@ for date in calendar['cal_date']:
 income_statement=pd.DataFrame([])
 balance_sheet=pd.DataFrame([])
 cashflow_statement=pd.DataFrame([])
-for symbol in stock_pool['symbol'].head(5):
+for symbol in stock_pool['symbol'].head(15):
     print('now get the stock '+ symbol)
     if int(symbol) < 600000:
         temp_is = pro.income(ts_code=str(symbol)+'.SZ', start_date='20180110', end_date='20180730')
@@ -47,3 +47,15 @@ for symbol in stock_pool['symbol'].head(5):
     income_statement=income_statement.append(temp_is)
     balance_sheet=balance_sheet.append(temp_bs)
     cashflow_statement=cashflow_statement.append(temp_cs)
+
+###########财务指标
+financial_indicator=pd.DataFrame([])
+for symbol in stock_pool['symbol']:
+    print('handling stock '+symbol)
+    if int(symbol) < 600000:
+        temp_FI=pro.fina_indicator(ts_code=str(symbol)+'.SZ', start_date='20140110', end_date='20180730')
+    else:
+        temp_FI = pro.fina_indicator(ts_code=str(symbol) + '.SH', start_date='20140110', end_date='20180730')
+    financial_indicator=financial_indicator.append(temp_FI)
+
+financial_indicator.to_csv('C:/Users/Administrator/PycharmProjects/MultiFactors/financial_indicator.csv')
