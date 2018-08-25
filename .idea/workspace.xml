@@ -73,21 +73,22 @@
     <session id="-753103044">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1368" />
-          <entry key="py" value="1826" />
+          <entry key="Python Console" value="2544" />
+          <entry key="py" value="3729" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3194" />
+          <entry key="Python" value="6273" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -106,40 +107,20 @@
     <favorites_list name="MultiFactors" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47018573">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/get_data.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
-                  <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#20#0" expanded="true" />
-                    <marker date="1535165954988" expanded="true" signature="241:246" ph="..." />
-                    <marker date="1535165954988" expanded="true" signature="415:416" ph="..." />
-                    <marker date="1535165954988" expanded="true" signature="2722:3161" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/adj_data.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="95">
-                  <caret line="5" selection-start-line="5" selection-end-line="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/adj_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -171,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,6 +163,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,19 +227,19 @@
     <frame x="1280" y="0" width="1280" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4936306" visible="true" weight="0.1763285" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4936306" visible="true" weight="0.17552336" />
       <window_info id="Structure" order="1" sideWeight="0.5063694" side_tool="true" weight="0.47988078" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.11098398" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289183" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3289183" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Python Console" order="9" weight="0.23951435" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32781458" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="9" visible="true" weight="0.406181" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -272,21 +253,23 @@
     <entry file="file://$PROJECT_DIR$/pro_get_data.py" />
     <entry file="file://$PROJECT_DIR$/get_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
+        <state relative-caret-position="276">
+          <caret line="77" column="86" selection-start-line="77" selection-start-column="72" selection-end-line="77" selection-end-column="86" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1535165954988" expanded="true" signature="241:246" ph="..." />
-            <marker date="1535165954988" expanded="true" signature="415:416" ph="..." />
-            <marker date="1535165954988" expanded="true" signature="2722:3161" ph="..." />
+            <marker date="1535184268796" expanded="true" signature="241:246" ph="..." />
+            <marker date="1535184268796" expanded="true" signature="415:416" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/adj_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="374">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
