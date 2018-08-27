@@ -17,11 +17,14 @@ import numpy as np
 # gd.get_financial_indicators('20170101', '20180824')
 # gd.get_financial_indicators('20170101', '20180824')
 
+
 price = pd.read_csv('../RawData/price_data.csv')
 price_adj = pd.read_csv('../RawData/price_adj_factor.csv')
 basic = pd.read_csv('../RawData/daily_basic.csv')
 ZZ500 = pd.read_csv('./ZZ500/ZZ500.csv', encoding='gb18030')
 # financial_indicator = pd.read_csv('../RawData/financial_indicator.csv')
+
+date=list(price.groupby(by=['trade_date'],as_index=False).size().index)
 
 temp = price.merge(basic, how='left', on=['ts_code', 'trade_date'])
 temp = temp.merge(price_adj, how='left', on=['ts_code', 'trade_date'])
@@ -52,6 +55,7 @@ for symbol in ZZ500['ts_code']:
     result=result.append(temp_stock)
     i+=1
 
+result=result.sort_values(by=['trade_date', 'ts_code'], axis=0, ascending=True)
 result.to_csv('../RawData/all_raw_data.csv',encoding='gbk')
 
 
