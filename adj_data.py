@@ -41,18 +41,18 @@ temp['adj_low']=temp['low']*temp['adj_factor']
 temp['adj_close']=temp['close']*temp['adj_factor']
 
 predict_window=10
+result=pd.DataFrame([])
+i =1
 for symbol in ZZ500['ts_code']:
-    print('solving '+symbol)
-    temp_pct=temp[temp['ts_code']==symbol]['adj_close'].pct_change(periods=predict_window)
-    temp_date = temp[temp['ts_code'] == symbol]['trade_date']
+    print(str(i*100/500) + '%')
+    temp_stock=temp[temp['ts_code'] == symbol].copy()
+    temp_change=temp_stock['adj_close'].pct_change(periods=predict_window)
+    temp_change=temp_change.shift(-1*predict_window)
+    temp_stock['pct_chg_shift']=temp_change
+    result=result.append(temp_stock)
+    i+=1
 
-    temp_shift=temp_pct.shift(-1*predict_window)
-    temp_shift = pd.DataFrame({'trade_date': temp_date, 'adj_pct_change': temp_shift})
-    for index in temp_shift.index:
-        temp.loc[index,'adj_pct_change']=temp_shift.loc[index,'adj_pct_change']
-
-
-temp.to_csv('../RawData/all_raw_data.csv',encoding='gbk')
+result.to_csv('../RawData/all_raw_data.csv',encoding='gbk')
 
 
 
