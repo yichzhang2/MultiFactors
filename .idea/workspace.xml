@@ -80,19 +80,19 @@
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="3" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.4" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="3908" />
-          <entry key="py" value="5633" />
+          <entry key="Python Console" value="4005" />
+          <entry key="py" value="5813" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="9541" />
+          <entry key="Python" value="9818" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -127,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cal_factors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="128">
+              <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -158,9 +158,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="33" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="342" />
+    <option name="y" value="62" />
     <option name="width" value="1280" />
     <option name="height" value="860" />
   </component>
@@ -170,6 +170,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,7 +182,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,21 +268,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
+    <frame x="342" y="62" width="1280" height="860" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4936306" visible="true" weight="0.085894406" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4936306" visible="true" weight="0.17552336" />
       <window_info id="Structure" order="1" sideWeight="0.5063694" side_tool="true" weight="0.47988078" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.11098398" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32855567" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3275488" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39888424" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32855567" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32524964" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="9" sideWeight="0.49873257" visible="true" weight="0.5" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="9" sideWeight="0.49873257" visible="true" weight="0.6349862" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50126743" side_tool="true" weight="0.42538354" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -301,6 +302,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://G:/SVM for RB/pre_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-894">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/adj_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -311,17 +319,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://G:/SVM for RB/pre_process.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-894">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cal_factors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="128">
+          <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
