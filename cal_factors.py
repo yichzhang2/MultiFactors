@@ -20,14 +20,11 @@ X=pd.concat([raw_data['lnCap'],industry_dummies],axis=1)
 Y=raw_data['btop']
 
 Y=pd.concat([Y,X],axis=1)
-Y=pd.concat([raw_data['trade_date'],raw_data['pct_chg_shift'],Y],axis=1)
+Y=pd.concat([raw_data['trade_date'],raw_data['adj_pct_change'],Y],axis=1)
 
 Y.drop(['食品饮料'],axis=1, inplace=True)
 
 ########################### 此时Y的结构是：日期，未来变化率，因子，中性化项目
-
-
-
 def winsorize(factor, std=3, have_negative = True):
     '''
     去极值函数
@@ -42,8 +39,6 @@ def winsorize(factor, std=3, have_negative = True):
     r[r>edge_up] = edge_up
     r[r<edge_low] = edge_low
     return r
-
-
 
 predict_window=10   #和adj_data中一致
 k=1                 #过去几日数据的时间窗
@@ -70,11 +65,11 @@ for i in range(k-1,len(date)-predict_window):
 
     temp['btop'] = preprocessing.scale(temp['btop'])
     temp['lnCap'] = preprocessing.scale(temp['lnCap'])
-    result = sm.OLS(temp['btop'], temp.iloc[:, range(4, 31)]).fit()
+    result = sm.OLS(temp['btop'], temp.iloc[:, range(3, 31)]).fit()
     temp['btop'] = result.resid
 
-    btop_ic=btop_ic.append([temp['btop'].corr(temp['pct_chg_shift'],method='spearman')])
-    linreg= sm.OLS(temp['btop'], temp['pct_chg_shift']).fit()
+    btop_ic=btop_ic.append([temp['btop'].corr(temp['adj_pct_change'],method='spearman')])
+    linreg= sm.OLS(temp['btop'], temp['adj_pct_change']).fit()
 
     btop_factor_premium=btop_factor_premium.append([linreg.params[0]])
 
@@ -94,3 +89,53 @@ print('average IC: '+ str(btop['IC'].mean()))   #仅仅k=1时成立
 btop.to_csv('../RawData/BTOP_IC.csv')
 
 
+'''以下是市值因子的计算'''
+
+
+predict_window=10   #和adj_data中一致
+k=1                 #过去几日数据的时间窗
+lnCap_ic = pd.DataFrame([])
+lnCap_factor_premium = pd.DataFrame([])
+
+#raw_industry=pd.get_dummies(raw_data)
+
+for i in range(k-1,len(date)-predict_window):
+    temp = pd.DataFrame([])
+    print('solving date '+str(date[i]))
+    for j in range(k):
+        temp=temp.append(Y[Y['trade_date']==date[i-j]])
+
+    temp = temp.reset_index()
+    temp.drop(columns=['index'], inplace=True)
+
+    nanblank = np.where(np.isnan(temp['btop']))
+    nanblank = list(nanblank[0])
+    temp = temp.drop(nanblank)
+
+#    temp['btop']=winsorize(temp['btop'])
+    temp['lnCap'] = winsorize(temp['lnCap'])
+
+#    temp['btop'] = preprocessing.scale(temp['btop'])
+    temp['lnCap'] = preprocessing.scale(temp['lnCap'])
+    result = sm.OLS(temp['lnCap'], temp.iloc[:, range(4, 31)]).fit()
+    temp['lnCap'] = result.resid
+
+    lnCap_ic=lnCap_ic.append([temp['lnCap'].corr(temp['adj_pct_change'],method='spearman')])
+    linreg= sm.OLS(temp['lnCap'], temp['adj_pct_change']).fit()
+
+    lnCap_factor_premium=lnCap_factor_premium.append([linreg.params[0]])
+
+lnCap_ic=lnCap_ic.reset_index()
+lnCap_ic.drop(columns=['index'],inplace=True)
+
+lnCap_factor_premium=lnCap_factor_premium.reset_index()
+lnCap_factor_premium.drop(columns=['index'],inplace=True)
+
+date_slice=pd.DataFrame(date[k-1:len(date)-predict_window])
+
+lnCap=pd.DataFrame({'trade_date':date_slice[0],'IC':lnCap_ic[0],'Factor_Premium':lnCap_factor_premium[0]})
+
+print('positive percentage: '+str(lnCap[btop['IC']>0].count().IC/(len(date)-predict_window-k+1)))     #仅仅k=1时成立
+print('average IC: '+ str(lnCap['IC'].mean()))   #仅仅k=1时成立
+
+lnCap.to_csv('../RawData/lnCap_IC.csv')
