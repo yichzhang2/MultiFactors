@@ -43,7 +43,7 @@ temp['adj_high']=temp['high']*temp['adj_factor']
 temp['adj_low']=temp['low']*temp['adj_factor']
 temp['adj_close']=temp['close']*temp['adj_factor']
 
-predict_window=10
+predict_window=1
 result=pd.DataFrame([])
 i =1
 for symbol in ZZ500['ts_code']:
