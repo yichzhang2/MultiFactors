@@ -49,7 +49,8 @@ i =1
 for symbol in ZZ500['ts_code']:
     print(str(i*100/500) + '%')
     temp_stock=temp[temp['ts_code'] == symbol].copy()
-    temp_change=temp_stock['adj_close'].pct_change(periods=predict_window)
+    #temp_change=temp_stock['adj_close'].pct_change(periods=predict_window)
+    temp_change = temp_stock['close'].pct_change(periods=predict_window)
     temp_change=temp_change.shift(-1*predict_window)
     temp_stock['pct_chg_shift']=temp_change
     result=result.append(temp_stock)

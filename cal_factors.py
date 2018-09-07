@@ -17,7 +17,9 @@ raw_data['lnCap']=np.log(raw_data['total_mv'])
 raw_data['btop']=1/raw_data['pb']
 
 X=pd.concat([raw_data['lnCap'],industry_dummies],axis=1)
-Y=raw_data['btop']
+Y=pd.DataFrame([])
+Y['btop']=raw_data['btop'].copy()
+Y['sqrt_mv']=np.sqrt(raw_data['total_mv'].copy())
 
 Y=pd.concat([Y,X],axis=1)
 Y=pd.concat([raw_data['trade_date'],raw_data['pct_chg_shift'],Y],axis=1)
@@ -40,7 +42,7 @@ def winsorize(factor, std=3, have_negative = True):
     r[r<edge_low] = edge_low
     return r
 
-predict_window=10   #和adj_data中一致
+predict_window=1   #和adj_data中一致
 k=1                 #过去几日数据的时间窗
 btop_ic = pd.DataFrame([])
 btop_factor_premium = pd.DataFrame([])
@@ -60,16 +62,17 @@ for i in range(k-1,len(date)-predict_window):
     nanblank = list(nanblank[0])
     temp = temp.drop(nanblank)
 
+    temp = temp.iloc[np.nonzero(temp['pct_chg_shift'])[0], :]  # 去除价格不变的行
     temp['btop']=winsorize(temp['btop'])
     temp['lnCap'] = winsorize(temp['lnCap'])
 
     temp['btop'] = preprocessing.scale(temp['btop'])
     temp['lnCap'] = preprocessing.scale(temp['lnCap'])
-    result = sm.OLS(temp['btop'], temp.iloc[:, range(3, 31)]).fit()
+    result = sm.OLS(temp['btop'], temp.iloc[:, range(4, 32)]).fit()
     temp['btop'] = result.resid
 
     btop_ic=btop_ic.append([temp['btop'].corr(temp['pct_chg_shift'],method='spearman')])
-    linreg= sm.OLS(temp['btop'], temp['pct_chg_shift']).fit()
+    linreg= sm.WLS( temp['pct_chg_shift'],temp['btop'],weights=temp['sqrt_mv'].tolist()).fit()
 
     btop_factor_premium=btop_factor_premium.append([linreg.params[0]])
 
@@ -116,12 +119,12 @@ for i in range(k-1,len(date)-predict_window):
     temp = temp.iloc[np.nonzero(temp['pct_chg_shift'])[0],:]            #去除价格不变的行
     temp['lnCap'] = winsorize(temp['lnCap'])                            #3倍标准差之外的数字拉回来
     temp['lnCap'] = preprocessing.scale(temp['lnCap'])                  #标准化成均值0，方差1
-    result = sm.OLS(temp['lnCap'], temp.iloc[:, range(4, 31)]).fit()    #行业中性化
+    result = sm.OLS(temp['lnCap'], temp.iloc[:, range(5, 32)]).fit()    #行业中性化
     temp['lnCap'] = result.resid                                        #残差作为中性化的因子
 
     lnCap_ic=lnCap_ic.append([temp['lnCap'].corr(temp['pct_chg_shift'],method='spearman')])     #求IC
 
-    linreg= sm.OLS(temp['pct_chg_shift'],temp['lnCap']).fit()           #回归
+    linreg= sm.WLS(temp['pct_chg_shift'],temp['lnCap'],weights=temp['sqrt_mv'].tolist()).fit()           #回归
     lnCap_factor_premium=lnCap_factor_premium.append([linreg.params[0]])#因子收益率
 
 
