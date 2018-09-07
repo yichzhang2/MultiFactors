@@ -20,7 +20,7 @@ def get_price(startdate, enddate):
     i = 1
     #for symbol in ZZ500['Code']:
     for symbol in ALLA['Code']:
-        print('get price data from ' + startdate + 'to ' + enddate + ': ' + str(i / 500) + '%')
+        print('get price data from ' + startdate + 'to ' + enddate + ': ' + str(i / 3541) + '%')
         temp_price = pro.daily(ts_code=symbol, start_date=startdate, end_date=enddate)
         price_data = price_data.append(temp_price)
         i = i + 1
@@ -38,7 +38,7 @@ def get_price_adj():
     i = 1
     #for symbol in ZZ500['Code']:
     for symbol in ALLA['Code']:
-        print('get price adjust factor: ' + str(i / 500) + '%')
+        print('get price adjust factor: ' + str(i / 3541) + '%')
         temp_adj = pro.adj_factor(ts_code=symbol)
         price_adj_factor = price_adj_factor.append(temp_adj)
         i = i + 1
@@ -56,7 +56,7 @@ def get_basic(startdate, enddate):
     i = 1
     #for symbol in ZZ500['Code']:
     for symbol in ALLA['Code']:
-        print('get daily basic data from ' + startdate + 'to ' + enddate + ': ' + str(i / 500) + '%')
+        print('get daily basic data from ' + startdate + 'to ' + enddate + ': ' + str(i / 3541) + '%')
         temp_basic = pro.daily_basic(ts_code=symbol, start_date=startdate, end_date=enddate)
         daily_basic = daily_basic.append(temp_basic)  # 需要去除休假日，和交易日join
         i = i + 1
@@ -74,7 +74,7 @@ def get_suspend():
     i = 1
     #for symbol in ZZ500['Code']:
     for symbol in ALLA['Code']:
-        print('get suspend data: ' + str(i / 500) + '%')
+        print('get suspend data: ' + str(i / 3541) + '%')
         temp_suspend = pro.suspend(ts_code=symbol)
         suspend = suspend.append(temp_suspend)
         i = i + 1
@@ -92,7 +92,7 @@ def get_financial_indicators(startdate, enddate):  # max year = 7
     i = 1
     #for symbol in ZZ500['Code']:
     for symbol in ALLA['Code']:
-        print('get financial indicators from ' + startdate + 'to ' + enddate + ': ' + str(i / 500) + '%')
+        print('get financial indicators from ' + startdate + 'to ' + enddate + ': ' + str(i / 3541) + '%')
         temp_FI = pro.fina_indicator(ts_code=symbol, start_date=startdate, end_date=enddate)
         financial_indicator = financial_indicator.append(temp_FI)
         i = i + 1
