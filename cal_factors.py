@@ -3,6 +3,8 @@ import numpy as np
 import statsmodels.api as sm
 from sklearn import preprocessing
 from sklearn.linear_model import LinearRegression
+import talib
+import seaborn
 
 raw_data=pd.read_csv('../RawData/all_raw_data.csv',encoding='gbk')
 date=list(raw_data.groupby(by=['trade_date'],as_index=False).size().index)
@@ -90,7 +92,7 @@ print('positive percentage: '+str(btop[btop['IC']>0].count().IC/(len(date)-predi
 print('average IC: '+ str(btop['IC'].mean()))   #仅仅k=1时成立
 
 btop.to_csv('../RawData/BTOP_IC.csv')
-
+seaborn.distplot(btop['Factor_Premium'])
 
 '''以下是市值因子的计算'''
 
@@ -142,4 +144,6 @@ print('positive percentage: '+str(lnCap[lnCap['IC']>0].count().IC/(len(date)-pre
 print('average IC: '+ str(lnCap['IC'].mean()))   #仅仅k=1时成立
 
 lnCap.to_csv('../RawData/lnCap_IC.csv')
+
+seaborn.distplot(lnCap['Factor_Premium'])
 
