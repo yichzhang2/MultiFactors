@@ -2,14 +2,14 @@ import get_data as gd
 import pandas as pd
 import numpy as np
 
-gd.get_price_adj()
+#gd.get_price_adj()
 # gd.get_suspend()
 #
-gd.get_price('20170101', '20180907')
+gd.get_price('20140101', '20151231')
 # gd.get_price('20140101', '20161231')
 # gd.get_price('20110101', '20131231')
 #
-gd.get_basic('20170101', '20180907')
+gd.get_basic('20140101', '20151231')
 # gd.get_basic('20170101', '20180824')
 # gd.get_basic('20170101', '20180824')
 #
@@ -17,25 +17,24 @@ gd.get_basic('20170101', '20180907')
 # gd.get_financial_indicators('20170101', '20180824')
 # gd.get_financial_indicators('20170101', '20180824')
 
-'''
+
 price = pd.read_csv('../RawData/price_data.csv')
 price_adj = pd.read_csv('../RawData/price_adj_factor.csv')
 basic = pd.read_csv('../RawData/daily_basic.csv')
-ZZ500 = pd.read_csv('./ZZ500/ZZ500.csv', encoding='gb18030')
+#ZZ500 = pd.read_csv('./ZZ500/ZZ500.csv', encoding='gb18030')
+HS300 = pd.read_csv('./HS300/HS300.csv', encoding='gb18030')
 # financial_indicator = pd.read_csv('../RawData/financial_indicator.csv')
-'''
 
-ALLA = pd.read_csv('./ALLA/ALLA.csv', encoding='gb18030')
 
 date=list(price.groupby(by=['trade_date'],as_index=False).size().index)
 
-temp = price.merge(basic, how='left', on=['ts_code', 'trade_date'])
+temp = price.merge(basic, how='left', on=[ 'trade_date','ts_code'])
 temp = temp.merge(price_adj, how='left', on=['ts_code', 'trade_date'])
 
 #ZZ500.rename(columns={'Code': 'ts_code'}, inplace=True)
 #temp = temp.merge(ZZ500[['ts_code', 'Industry']], how='left', on='ts_code')
-ALLA.rename(columns={'Code': 'ts_code'}, inplace=True)
-temp = temp.merge(ALLA[['ts_code', 'Industry']], how='left', on='ts_code')
+HS300.rename(columns={'Code': 'ts_code'}, inplace=True)
+temp = temp.merge(HS300[['ts_code', 'Industry']], how='left', on='ts_code')
 
 temp = temp.sort_values(by=['trade_date', 'ts_code'], axis=0, ascending=True)
 
@@ -52,9 +51,9 @@ temp['adj_close']=temp['close']*temp['adj_factor']
 predict_window=1
 result=pd.DataFrame([])
 i =1
-for symbol in ALLA['ts_code']:
+for symbol in HS300['ts_code']:
 #for symbol in ZZ500['ts_code']:
-    print(str(i*100/3541) + '%')
+    print(str(i/3) + '%')
     temp_stock=temp[temp['ts_code'] == symbol].copy()
     #temp_change=temp_stock['adj_close'].pct_change(periods=predict_window)
     temp_change = temp_stock['close'].pct_change(periods=predict_window)
